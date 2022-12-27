@@ -32,3 +32,14 @@ const storage = multer.diskStorage({
     },
 });
 const upload = multer({storage});
+
+// mongoose connection setup:
+const PORT = process.env.MONGO_PORT || 5000;
+mongoose.connect(process.env.MONGO_URL,{
+    useNewUrlParse : true,
+    useUnifiedTopology:true,
+}).then(()=>{
+    app.listen(PORT,()=> console.log(`server port :${PORT}`));
+}).catch((error)=>console.log(`${error} did not connect`) )
+
+
