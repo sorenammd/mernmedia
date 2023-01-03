@@ -10,7 +10,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import authRoutes from "./routes/auth.js"
 import {register} from "./controllers/auth.js"
-
+import userRoutes from "./routes/users.js"
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -41,6 +41,7 @@ app.post("/auth/register",upload.single("picture"),register);
 
 //routes 
 app.use("/auth",authRoutes);
+app.use("users",userRoutes);
 // mongoose connection setup:
 const PORT = process.env.MONGO_PORT || 5000;
 mongoose.set('strictQuery', true);
